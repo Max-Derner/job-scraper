@@ -10,28 +10,53 @@ While I normally quite like to use TDD where I can, this is something I designed
 
 
 ### Requirements
-You must install selenium.
-This project uses Firefox and the Geckodriver.
-As such, you must install these too.
-You must also set up a gmail account to send emails from and get an app password for it.
+Ideally you should set up a venv for this project to run inside.  
+execute the following commands:  
+`python3 -m venv jobsworth`  
+`source jobsworth/bin/activate`  
+`pip install -r requirements.txt`  
+
+Now when you want to run the project, activate the venv first:  
+`source jobsworth/bin/activate`  
+then run
+`python3 main.py`
+
 
 ### Required files
 You must create two json files which are excluded from this repository for privacy purposes.
 * `email_addresses.json`
 * `passwords.json`
+* `sites.json`
 
-email_addresses.json is filled as such:  
+email_addresses.json is structured as such:  
 ```
 {  
     "APP_PASSWORD": "fill this in with a proper password"  
 }  
 ```
 
-passwords.json is filled as such:  
+passwords.json is structured as such:  
 ```
 {  
     "ADMIN": "your email address",  
     "TARGET": "person who gets emailed about jobs",  
     "ROBOT": "email address you have app password for"  
 }  
+```
+
+sites.json is structured as such:
+```
+{
+    "page-alias": {
+        "page": "https://www.page.co.uk/careers/#vacanciesmain",
+        "main-content": "//*[@id=\"main-content\"]"  <--- this is an x-path for the pages main content
+    },
+    .......
+}
+```
+the x-path should point to something that can provide a view of all the available jobs
+
+regex.json is structured as such:
+```
+
 ```
