@@ -10,7 +10,7 @@ EMAIL_ADDRESSES_FILE = "email_addresses.json"
 
 
 def write_content(text: str, source: str):
-    directory = Directories.DEBUG
+    directory = Directories.DEBUG.value
     ensure_directories_present(directories=[directory])
     with open(f"{directory}/{source}.txt", mode='w') as io_wrapper:
         io_wrapper.write(text)

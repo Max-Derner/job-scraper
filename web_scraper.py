@@ -21,7 +21,7 @@ Returns (broken_sites, sites_with_manchester_ref)
     driver = Firefox(options=opts)
     sites_with_manchester_ref = []
     working_sites = []
-    dest_directory = Directories.ERRORS
+    dest_directory = Directories.ERRORS.value
     SITES = get_sites_dict()
     for name, map in SITES.items():
         page = map[MapStructure.PAGE]
