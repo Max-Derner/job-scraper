@@ -8,6 +8,5 @@ Given their accidental nature, they follow no particular rigour just as the ZOMB
 
 ## Running tests
 
-`pip install pytest`
 cd to project directory
 `python3 -m pytest .`
