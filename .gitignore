@@ -1,3 +1,6 @@
 email_addresses.json
 passwords.json
 sites.json
+jobsworth/
+geckodriver.log
+**/__pycache__/
