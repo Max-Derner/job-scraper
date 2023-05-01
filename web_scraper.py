@@ -26,6 +26,7 @@ Returns (broken_sites, working_sites, sites_with_manchester_ref)
     for name, map in SITES.items():
         page = map[MapStructure.PAGE]
         main_content = map[MapStructure.MAIN_CONTENT]
+        lines_to_ignore = map[MapStructure.LINES_TO_IGNORE]
         snitch = Snitch(dest_directory=dest_directory, web_page_alias=name)
 
         logger.info(f"accessing website: {name}")
@@ -34,6 +35,10 @@ Returns (broken_sites, working_sites, sites_with_manchester_ref)
             driver.get(url=page)
             sleep(1)
             text = driver.find_element(by=By.XPATH, value=main_content).text
+            text = remove_ignored_lines(
+                unedited_text=text,
+                lines_to_ignore=lines_to_ignore
+                )
             write_content(text=text, source=name)
             logger.info("Scraping for the word 'Manchester'")
             found_manchester = contains_manchester(text=text)
@@ -44,6 +49,18 @@ Returns (broken_sites, working_sites, sites_with_manchester_ref)
     driver.quit()
     broken_sites = find_broken_sites(successfully_used_sites=working_sites)
     return (broken_sites, working_sites, sites_with_manchester_ref)
+
+
+def remove_ignored_lines(
+        unedited_text: str,
+        lines_to_ignore: List[int]
+        ) -> str:
+    lines_to_ignore = [line-1 for line in lines_to_ignore]
+    split_text = unedited_text.split('\n')
+    for line_number in lines_to_ignore:
+        split_text[line_number] = ''
+    edited_text = '\n'.join(split_text)
+    return edited_text
 
 
 def find_broken_sites(successfully_used_sites: List[str]) -> List[str]:

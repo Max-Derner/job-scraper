@@ -36,3 +36,4 @@ class Directories(str, Enum):
 class MapStructure(str, Enum):
     PAGE = 'page'
     MAIN_CONTENT = 'main-content'
+    LINES_TO_IGNORE = 'lines-to-ignore'

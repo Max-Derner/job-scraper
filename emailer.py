@@ -68,7 +68,8 @@ def send_emails(emails: EmailCollection):
         logger.debug("logged in\n")
 
         for email in emails:
-            logger.info(f"sending email to {email.address}")
+            email_subject = email.message.split('\n')[0]
+            logger.info(f"sending email to {email.address}, {email_subject}")
             server.sendmail(
                 from_addr=robot_addr,
                 to_addrs=email.address,

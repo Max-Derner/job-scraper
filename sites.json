@@ -1,26 +1,32 @@
 {
     "cass-art": {
         "page": "https://www.cassart.co.uk/careers/#vacanciesmain",
-        "main-content": "//*[@id=\"main-content\"]"
+        "main-content": "//*[@id=\"main-content\"]",
+        "lines-to-ignore": []
     },
     "fred-aldous": {
         "page": "https://www.fredaldous.co.uk/pages/careers-vacancies",
-        "main-content": "//*[@id=\"site-main\"]"
+        "main-content": "//*[@id=\"site-main\"]",
+        "lines-to-ignore": []
     },
     "blue-rinse": {
         "page": "https://www.bluerinsevintage.co.uk/pages/opportunities-vacancies",
-        "main-content": "//*[@id=\"opportunities-amp-vacancies\"]"
+        "main-content": "//*[@id=\"opportunities-amp-vacancies\"]",
+        "lines-to-ignore": []
     },
     "m&s": {
         "page": "https://jobs.marksandspencer.com/search-jobs?acm=56319,5106&alrpm=ALL&ascf=[%7B%22key%22:%22ALL%22,%22value%22:%22%22%7D]",
-        "main-content": "//*[@id=\"search\"]"
+        "main-content": "//*[@id=\"search\"]",
+        "lines-to-ignore": []
     },
     "and-other-stories": {
         "page": "https://careers.smartrecruiters.com/HMGroup/other-stories",
-        "main-content": "/html/body/div[1]/div/main/section/div"
+        "main-content": "/html/body/div[1]/div/main/section/div",
+        "lines-to-ignore": []
     },
     "body-shop": {
         "page": "https://careers.thebodyshop.com/search/?createNewAlert=false&q=&locationsearch=manchester&optionsFacetsDD_customfield1=&optionsFacetsDD_customfield2=&optionsFacetsDD_customfield3=&optionsFacetsDD_state=&optionsFacetsDD_country=",
-        "main-content": "/html/body/div/div[2]/div/div/div[5]"
+        "main-content": "/html/body/div/div[2]/div/div/div[5]",
+        "lines-to-ignore": [1]
     }
 }
