@@ -14,5 +14,13 @@
     "m&s": {
         "page": "https://jobs.marksandspencer.com/search-jobs?acm=56319,5106&alrpm=ALL&ascf=[%7B%22key%22:%22ALL%22,%22value%22:%22%22%7D]",
         "main-content": "//*[@id=\"search\"]"
+    },
+    "and-other-stories": {
+        "page": "https://careers.smartrecruiters.com/HMGroup/other-stories",
+        "main-content": "/html/body/div[1]/div/main/section/div"
+    },
+    "body-shop": {
+        "page": "https://careers.thebodyshop.com/search/?createNewAlert=false&q=&locationsearch=manchester&optionsFacetsDD_customfield1=&optionsFacetsDD_customfield2=&optionsFacetsDD_customfield3=&optionsFacetsDD_state=&optionsFacetsDD_country=",
+        "main-content": "/html/body/div/div[2]/div/div/div[5]"
     }
 }
