@@ -35,8 +35,7 @@ class Snitch:
                     exception_traceback=exc_tb,
                     exception_value=exc_val
                 )
-            archive_artefacts()
-            return True if exc_val else False
+                return False
 
     def context_manager(self):
         return self.WriteExceptionContextHandler(
