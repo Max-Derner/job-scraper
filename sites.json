@@ -14,9 +14,5 @@
     "m&s": {
         "page": "https://jobs.marksandspencer.com/search-jobs?acm=56319,5106&alrpm=ALL&ascf=[%7B%22key%22:%22ALL%22,%22value%22:%22%22%7D]",
         "main-content": "//*[@id=\"search\"]"
-    },
-    "broken": {
-        "page": "http://www.adfasdfadfadsf.com/",
-        "main-content": "//*[@id=\"search\"]"
     }
 }
