@@ -41,12 +41,12 @@ _ROOT_FILE_NAME = 'job_project'
 _ROOT_DIR_PATH = os.path.dirname(os.path.abspath(_ROOT_FILE_NAME))
 
 _FILE_NAME_FOR_CONSOLE_OUTPUT = 'console_output.log'
-_RELATIVE_CONSOLE_OUTPUT_FILE_PATH = f'{ARTEFACTS_DIR}/{_FILE_NAME_FOR_CONSOLE_OUTPUT}'
-_FULL_CONSOLE_OUTPUT_FILE_PATH = f'{_ROOT_DIR_PATH}/{_RELATIVE_CONSOLE_OUTPUT_FILE_PATH}'
+_RELATIVE_CONSOLE_OUTPUT_FILE_PATH = f'{ARTEFACTS_DIR}/{_FILE_NAME_FOR_CONSOLE_OUTPUT}'  # noqa: E501
+_FULL_CONSOLE_OUTPUT_FILE_PATH = f'{_ROOT_DIR_PATH}/{_RELATIVE_CONSOLE_OUTPUT_FILE_PATH}'  # noqa: E501
 
 _FILE_NAME_FOR_DEBUG_OUTPUT = 'debug_output.log'
-_RELATIVE_DEBUG_OUTPUT_FILE_PATH =  f'{ARTEFACTS_DIR}/{_FILE_NAME_FOR_DEBUG_OUTPUT}'
-_FULL_DEBUG_OUTPUT_FILE_PATH = f'{_ROOT_DIR_PATH}/{_RELATIVE_DEBUG_OUTPUT_FILE_PATH}'
+_RELATIVE_DEBUG_OUTPUT_FILE_PATH = f'{ARTEFACTS_DIR}/{_FILE_NAME_FOR_DEBUG_OUTPUT}'  # noqa: E501
+_FULL_DEBUG_OUTPUT_FILE_PATH = f'{_ROOT_DIR_PATH}/{_RELATIVE_DEBUG_OUTPUT_FILE_PATH}'  # noqa: E501
 
 _CONSOLE_LOG_LEVEL = logging.INFO
 _DEBUG_FILE_LOG_LEVEL = logging.DEBUG
@@ -56,7 +56,7 @@ handlers: List[logging.Handler]
 config_message = 'logger configured:\n'
 config_message += 'logging will go to 2 output files\n'
 config_message += 'console output - '.ljust(18) + f'{_FULL_CONSOLE_OUTPUT_FILE_PATH}\n'  # noqa: E501
-config_message += 'debug output - '.ljust(18) + f'{_FULL_DEBUG_OUTPUT_FILE_PATH}\n'
+config_message += 'debug output - '.ljust(18) + f'{_FULL_DEBUG_OUTPUT_FILE_PATH}\n'  # noqa: E501
 
 
 def _get_debug_output_formatter() -> logging.Formatter:
@@ -143,7 +143,10 @@ def _set_up_logger():
 
 def get_output_directories() -> List[str]:
     return_list = []
-    output_files = [_RELATIVE_CONSOLE_OUTPUT_FILE_PATH, _RELATIVE_DEBUG_OUTPUT_FILE_PATH]
+    output_files = [
+        _RELATIVE_CONSOLE_OUTPUT_FILE_PATH,
+        _RELATIVE_DEBUG_OUTPUT_FILE_PATH
+        ]
     for output_file in output_files:
         directory_structure = output_file.split('/')[:-1]
         directory = '/'.join(directory_structure)

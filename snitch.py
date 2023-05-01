@@ -2,7 +2,6 @@ from common import format_exception
 from file_io import write_exception_report
 from emailer import send_emergency_email
 from logger import logger
-from futils import archive_artefacts
 
 
 class Snitch:

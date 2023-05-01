@@ -9,9 +9,9 @@ def test_ensure_directories_present():
     path2 = "directory1/directory2"
     paths = [path1, path2]
     ensure_directories_present(directories=paths)
-    assert os.path.exists(path=path1), "Creating a directory structure specified from root did not work"
-    assert os.path.exists(path=path2), "Creating a directory structure specified relatively did not work"
+    assert os.path.exists(path=path1),\
+        "Creating a directory structure specified from root did not work"
+    assert os.path.exists(path=path2),\
+        "Creating a directory structure specified relatively did not work"
     shutil.rmtree(path="direct1")
     shutil.rmtree(path="directory1")
-
-
