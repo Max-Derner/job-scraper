@@ -1,6 +1,8 @@
 email_addresses.json
 passwords.json
-sites.json
 jobsworth/
 geckodriver.log
 **/__pycache__/
+.vscode/
+experimental.py
+archives/

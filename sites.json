@@ -1,0 +1,22 @@
+{
+    "cass-art": {
+        "page": "https://www.cassart.co.uk/careers/#vacanciesmain",
+        "main-content": "//*[@id=\"main-content\"]"
+    },
+    "fred-aldous": {
+        "page": "https://www.fredaldous.co.uk/pages/careers-vacancies",
+        "main-content": "//*[@id=\"site-main\"]"
+    },
+    "blue-rinse": {
+        "page": "https://www.bluerinsevintage.co.uk/pages/opportunities-vacancies",
+        "main-content": "//*[@id=\"opportunities-amp-vacancies\"]"
+    },
+    "m&s": {
+        "page": "https://jobs.marksandspencer.com/search-jobs?acm=56319,5106&alrpm=ALL&ascf=[%7B%22key%22:%22ALL%22,%22value%22:%22%22%7D]",
+        "main-content": "//*[@id=\"search\"]"
+    },
+    "broken": {
+        "page": "http://www.adfasdfadfadsf.com/",
+        "main-content": "//*[@id=\"search\"]"
+    }
+}

@@ -26,7 +26,6 @@ then run
 You must create two json files which are excluded from this repository for privacy purposes.
 * `email_addresses.json`
 * `passwords.json`
-* `sites.json`
 
 email_addresses.json is structured as such:  
 ```
@@ -42,21 +41,4 @@ passwords.json is structured as such:
     "TARGET": "person who gets emailed about jobs",  
     "ROBOT": "email address you have app password for"  
 }  
-```
-
-sites.json is structured as such:
-```
-{
-    "page-alias": {
-        "page": "https://www.page.co.uk/careers/#vacanciesmain",
-        "main-content": "//*[@id=\"main-content\"]"  <--- this is an x-path for the pages main content
-    },
-    .......
-}
-```
-the x-path should point to something that can provide a view of all the available jobs
-
-regex.json is structured as such:
-```
-
 ```
