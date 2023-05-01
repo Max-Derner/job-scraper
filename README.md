@@ -10,6 +10,11 @@ While I normally quite like to use TDD where I can, this is something I designed
 
 
 ### Requirements
+Before getting into this, you will need to install FireFox and GeckoDriver.  
+If you use Linux or WSL, you should be able to run something like:  
+`sudo apt install firefox`  
+`sudo apt install firefox-geckodriver`  
+
 Ideally you should set up a venv for this project to run inside.  
 execute the following commands:  
 `python3 -m venv jobsworth`  
@@ -20,6 +25,11 @@ Now when you want to run the project, activate the venv first:
 `source jobsworth/bin/activate`  
 then run
 `python3 main.py`
+
+
+### Caveats
+Running this in Windows will break because it doesn't follow the Filesystem Hierarchy Standard of using '/' in it's directory structure.
+I have only used this on Ubuntu 20.04.6 LTS, your mileage may vary.
 
 
 ### Required files
