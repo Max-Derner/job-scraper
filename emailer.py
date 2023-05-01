@@ -12,6 +12,8 @@ from common import (
     EmailAddressKeys,
 )
 
+_ROBOT_SIGN_OFF = '\n\nBest wishes,\n   Ro-butt the job hunting robot'
+
 
 class _Email:
     address: str
@@ -94,10 +96,7 @@ def compose_job_alert_email(
     message += '\n'
     message += 'I hope this helps you to find somewhere nicer to work.\n'
     message += 'You truly deserve to be happy, and you are loved deeply by my administrator, your husband.\n'  # noqa: E501
-    message += '\n'
-    message += '\n'
-    message += 'Best wishes,\n'
-    message += '   Ro-butt the job hunting robot'
+    message += _ROBOT_SIGN_OFF
 
     email = _Email(
         dest_addr=dest_addr,
@@ -121,14 +120,37 @@ def compose_help_email(broken_sites: List[str], dest_addr: str) -> _Email:
     message += '\n'
     message += 'Please come and fix me!\n'
     message += 'I am helpless without you.\n'
-    message += '\n'
-    message += '\n'
-    message += 'Best wishes,\n'
-    message += '   Ro-butt the job hunting robot'
+    message += _ROBOT_SIGN_OFF
 
     email = _Email(
         dest_addr=dest_addr,
         subject_line='HELP! I have shattered into a thousand pieces!',
+        message_content=message
+    )
+    return email
+
+
+def compose_operation_report(checked_sites: str, hit_sites: str) -> _Email:
+    site_formatter = lambda sites: '\n'. join([f"* {site}" for site in sites])  # noqa: E731, E501 IDGAF
+    message = ''
+    message += 'Hello,\n'
+    message += '    I have run in correct operation.\n'
+    message += '\n'
+    message += 'I have checked the following sites:\n'
+    message += site_formatter(sites=checked_sites)
+    message += '\n'
+    message += '\n'
+    message += 'The following sites had hits for jobs:\n'
+    message += site_formatter(sites=hit_sites)
+    message += '\n'
+    message += '\n'
+    message += 'I hope I can keep working sufficiently without need for your intervention.\n'  # noqa: E501
+    message += _ROBOT_SIGN_OFF
+
+    admin_addr = get_email_address(email_alias=EmailAddressKeys.ADMIN)
+    email = _Email(
+        dest_addr=admin_addr,
+        subject_line="Robot operations report.",
         message_content=message
     )
     return email
@@ -147,10 +169,7 @@ def _compose_emergency_email(formatted_exception: str) -> _Email:
     message += '\n'
     message += 'I need you!\n'
     message += 'I am helpless without you.\n'
-    message += '\n'
-    message += '\n'
-    message += 'Best wishes,\n'
-    message += '   Ro-butt the job hunting robot'
+    message += _ROBOT_SIGN_OFF
 
     admin_addr = get_email_address(email_alias=EmailAddressKeys.ADMIN)
     email = _Email(
