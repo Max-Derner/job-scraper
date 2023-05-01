@@ -2,7 +2,8 @@ from emailer import (
     EmailCollection,
     send_emails,
     compose_help_email,
-    compose_job_alert_email
+    compose_job_alert_email,
+    compose_operation_report_email
 )
 from logger import logger
 from web_scraper import scrape
@@ -17,10 +18,9 @@ def main():
     logger.info("Starting emailer!")
     emails = EmailCollection()
     logger.info("Starting to scrape sites")
-    broken_sites, sites_with_manchester_ref = scrape()
+    broken_sites, working_sites, sites_with_manchester_ref = scrape()
     sites_are_broken = len(broken_sites) > 0
     jobs_were_found = len(sites_with_manchester_ref) > 0
-    should_send_emails = sites_are_broken or jobs_were_found
     if sites_are_broken:
         logger.info("Some sites were broken.")
         admin_addr = get_email_address(email_alias=EmailAddressKeys.ADMIN)
@@ -36,12 +36,19 @@ def main():
                 dest_addr=target_addr
                 )
         )
-    if should_send_emails:
+    logger.info("Composing operations report email.")
+    emails.add_email(
+        compose_operation_report_email(
+            checked_sites=working_sites,
+            hit_sites=sites_with_manchester_ref
+        )
+    )
+    if len(emails) > 0:
         logger.info("Sending the appropriate email(s).")
         send_emails(emails=emails)
-    else:
-        logger.info("No emails to send today.")
+
     archive_artefacts()
+
 
 
 if __name__ == "__main__":

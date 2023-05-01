@@ -38,6 +38,9 @@ class EmailCollection:
 
     def __iter__(self):
         return iter(self.emails)
+    
+    def __len__(self):
+        return len(self.emails)
 
     def add_email(self, email: _Email):
         self.emails.append(email)
@@ -130,7 +133,7 @@ def compose_help_email(broken_sites: List[str], dest_addr: str) -> _Email:
     return email
 
 
-def compose_operation_report(checked_sites: str, hit_sites: str) -> _Email:
+def compose_operation_report_email(checked_sites: List[str], hit_sites: List[str]) -> _Email:
     site_formatter = lambda sites: '\n'. join([f"* {site}" for site in sites])  # noqa: E731, E501 IDGAF
     message = ''
     message += 'Hello,\n'

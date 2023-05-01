@@ -10,9 +10,9 @@ from time import sleep
 from logger import logger
 
 
-def scrape(headless_operation: bool = False) -> Tuple[List[str], List[str]]:
+def scrape(headless_operation: bool = False) -> Tuple[List[str], List[str], List[str]]:
     """
-Returns (broken_sites, sites_with_manchester_ref)
+Returns (broken_sites, working_sites, sites_with_manchester_ref)
     """
     logger.debug("Setting options")
     opts = Options()
@@ -43,7 +43,7 @@ Returns (broken_sites, sites_with_manchester_ref)
                 sites_with_manchester_ref.append(name)
     driver.quit()
     broken_sites = find_broken_sites(successfully_used_sites=working_sites)
-    return (broken_sites, sites_with_manchester_ref)
+    return (broken_sites, working_sites, sites_with_manchester_ref)
 
 
 def find_broken_sites(successfully_used_sites: List[str]) -> List[str]:
