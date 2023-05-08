@@ -11,7 +11,7 @@ pip install -r requirements.txt
 
 echo -e "\nStarting up job"
 echo -e "\n-~- -~- -~- -~- -~- -~- -~- -~- -~- -~-\n"
-python3 main.py
+python3 main.py --headless-operation  # headless operation must be set for cronjob to execute
 echo -e "\n-~- -~- -~- -~- -~- -~- -~- -~- -~- -~-\n"
 
 echo "Job exited with status: $?"
