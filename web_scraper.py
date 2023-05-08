@@ -29,7 +29,7 @@ Returns (broken_sites, working_sites, sites_with_manchester_ref)
         lines_to_ignore = map[MapStructure.LINES_TO_IGNORE]
         snitch = Snitch(dest_directory=dest_directory, web_page_alias=name)
 
-        logger.info(f"accessing website: {name}")
+        logger.info(f"\nAccessing website: {name}")
         text = ''
         with snitch.context_manager():
             driver.get(url=page)
@@ -40,11 +40,11 @@ Returns (broken_sites, working_sites, sites_with_manchester_ref)
                 lines_to_ignore=lines_to_ignore
                 )
             write_content(text=text, source=name)
-            logger.info("Scraping for the word 'Manchester'")
+            logger.info("Scraping website...")
             found_manchester = contains_manchester(text=text)
             working_sites.append(name)
             if found_manchester:
-                logger.info("Manchester found!")
+                logger.info("Match found!")
                 sites_with_manchester_ref.append(name)
     driver.quit()
     broken_sites = find_broken_sites(successfully_used_sites=working_sites)

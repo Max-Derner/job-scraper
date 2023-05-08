@@ -15,12 +15,13 @@ from file_io import get_email_address
 
 @Snitch.super_snitch_wrapper
 def main():
-    logger.info("Starting emailer!")
+    logger.info("\nStarting emailer!")
     emails = EmailCollection()
     logger.info("Starting to scrape sites")
     broken_sites, working_sites, sites_with_manchester_ref = scrape()
     sites_are_broken = len(broken_sites) > 0
     jobs_were_found = len(sites_with_manchester_ref) > 0
+    logger.info("\nComposing relevant emails.")
     if sites_are_broken:
         logger.info("Some sites were broken.")
         admin_addr = get_email_address(email_alias=EmailAddressKeys.ADMIN)
@@ -36,7 +37,6 @@ def main():
                 dest_addr=target_addr
                 )
         )
-    logger.info("Composing operations report email.")
     emails.add_email(
         compose_operation_report_email(
             checked_sites=working_sites,
@@ -44,7 +44,7 @@ def main():
         )
     )
     if len(emails) > 0:
-        logger.info("Sending the appropriate email(s).")
+        logger.info("\nSending the appropriate email(s).")
         send_emails(emails=emails)
 
     archive_artefacts()

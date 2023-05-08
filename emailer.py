@@ -82,6 +82,7 @@ def compose_job_alert_email(
         sites_with_hit: List[str],
         dest_addr: str
         ) -> _Email:
+    logger.info("Composing job alert email.")
     hit_sites = set(sites_with_hit)
     message = ''
     message += 'Hi,\n'
@@ -111,6 +112,7 @@ def compose_job_alert_email(
 
 
 def compose_help_email(broken_sites: List[str], dest_addr: str) -> _Email:
+    logger.info("Composing help email.")
     message = ''
     message += 'Hello Max,\n'
     message += '    Something has broken!\n'
@@ -135,7 +137,8 @@ def compose_help_email(broken_sites: List[str], dest_addr: str) -> _Email:
 
 
 def compose_operation_report_email(checked_sites: List[str], hit_sites: List[str]) -> _Email:
-    site_formatter = lambda sites: '\n'. join([f"* {site}" for site in sites])  # noqa: E731, E501 IDGAF
+    logger.info("Composing operations report email.")
+    site_formatter = lambda sites: '\n'. join([f"* {site}" for site in sites])  # noqa: E731, E501
     message = ''
     message += 'Hello,\n'
     message += '    I have run in correct operation.\n'
@@ -161,6 +164,7 @@ def compose_operation_report_email(checked_sites: List[str], hit_sites: List[str
 
 
 def _compose_emergency_email(formatted_exception: str) -> _Email:
+    logger.info("Composing critical failure alert email.")
     message = ''
     message += 'Hurry!'
     message += '    Please! Help me immediately!\n'
