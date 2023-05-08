@@ -50,6 +50,5 @@ def main():
     archive_artefacts()
 
 
-
 if __name__ == "__main__":
     main()
