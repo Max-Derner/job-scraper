@@ -10,7 +10,9 @@ from time import sleep
 from logger import logger
 
 
-def scrape(headless_operation: bool = False) -> Tuple[List[str], List[str], List[str]]:
+def scrape(
+        headless_operation: bool = False
+        ) -> Tuple[List[str], List[str], List[str]]:
     """
 Returns (broken_sites, working_sites, sites_with_manchester_ref)
     """

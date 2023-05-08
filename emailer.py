@@ -38,7 +38,7 @@ class EmailCollection:
 
     def __iter__(self):
         return iter(self.emails)
-    
+
     def __len__(self):
         return len(self.emails)
 
@@ -136,7 +136,10 @@ def compose_help_email(broken_sites: List[str], dest_addr: str) -> _Email:
     return email
 
 
-def compose_operation_report_email(checked_sites: List[str], hit_sites: List[str]) -> _Email:
+def compose_operation_report_email(
+        checked_sites: List[str],
+        hit_sites: List[str]
+        ) -> _Email:
     logger.info("Composing operations report email.")
     site_formatter = lambda sites: '\n'. join([f"* {site}" for site in sites])  # noqa: E731, E501
     message = ''
