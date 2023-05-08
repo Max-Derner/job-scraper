@@ -48,6 +48,7 @@ Returns (broken_sites, working_sites, sites_with_manchester_ref)
                 sites_with_manchester_ref.append(name)
             else:
                 logger.info("No match")
+    logger.info("Closing browser")
     driver.quit()
     broken_sites = find_broken_sites(successfully_used_sites=working_sites)
     return (broken_sites, working_sites, sites_with_manchester_ref)

@@ -49,14 +49,14 @@ You must create two json files which are excluded from this repository for priva
 * `email_addresses.json`  
 * `passwords.json`  
 
-email_addresses.json is structured as such:  
+passwords.json is structured as such:  
 ```
 {  
-    "APP_PASSWORD": "fill this in with a proper password"  
+    "APP_PASSWORD": "fill this in with a proper app password"  
 }  
 ```
 
-passwords.json is structured as such:  
+email_addresses.json is structured as such:  
 ```
 {  
     "ADMIN": "your email address",  
