@@ -160,7 +160,7 @@ def compose_operation_report_email(
     admin_addr = get_email_address(email_alias=EmailAddressKeys.ADMIN)
     email = _Email(
         dest_addr=admin_addr,
-        subject_line="Robot operations report.",
+        subject_line="Robot-ops report.",
         message_content=message
     )
     return email
