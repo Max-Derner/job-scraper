@@ -15,7 +15,7 @@ from file_io import get_email_address
 
 @Snitch.super_snitch_wrapper
 def main():
-    logger.info("\nStarting emailer!")
+    logger.info("\nStarting up!")
     emails = EmailCollection()
     logger.info("Starting to scrape sites")
     broken_sites, working_sites, sites_with_manchester_ref = scrape()
