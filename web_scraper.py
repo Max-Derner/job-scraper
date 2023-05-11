@@ -1,6 +1,7 @@
 from selenium.webdriver import Firefox
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
 import re
 from typing import List, Tuple
 from common import Directories, MapStructure
@@ -25,29 +26,33 @@ Returns (broken_sites, working_sites, sites_with_manchester_ref)
     working_sites = []
     dest_directory = Directories.ERRORS.value
     SITES = get_sites_dict()
-    for name, map in SITES.items():
+    for web_page_alias, map in SITES.items():
         page = map[MapStructure.PAGE]
         main_content = map[MapStructure.MAIN_CONTENT]
         lines_to_ignore = map[MapStructure.LINES_TO_IGNORE]
-        snitch = Snitch(dest_directory=dest_directory, web_page_alias=name)
+        snitch = Snitch(dest_directory=dest_directory, web_page_alias=web_page_alias)
 
-        logger.info(f"\nAccessing website: {name}")
+        logger.info(f"\nAccessing website: {web_page_alias}")
         text = ''
         with snitch.context_manager():
             driver.get(url=page)
             sleep(1)
-            text = driver.find_element(by=By.XPATH, value=main_content).text
+            try:
+                text = driver.find_element(by=By.XPATH, value=main_content).text
+            except NoSuchElementException:
+                logger.warning(f"Element not found: {web_page_alias} needs fixing")
+                continue
             text = remove_ignored_lines(
                 unedited_text=text,
                 lines_to_ignore=lines_to_ignore
                 )
-            write_content(text=text, source=name)
+            write_content(text=text, source=web_page_alias)
             logger.info("Scraping website...")
             found_manchester = contains_manchester(text=text)
-            working_sites.append(name)
+            working_sites.append(web_page_alias)
             if found_manchester:
                 logger.info("Match found!")
-                sites_with_manchester_ref.append(name)
+                sites_with_manchester_ref.append(web_page_alias)
             else:
                 logger.info("No match")
     logger.info("Closing browser")

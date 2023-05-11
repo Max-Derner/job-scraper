@@ -1,4 +1,4 @@
-#! bin/bash
+#! /bin/bash
 
 echo "Pulling most recent changes from repo"
 git pull
