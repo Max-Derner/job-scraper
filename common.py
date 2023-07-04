@@ -5,7 +5,7 @@ from enum import Enum
 from datetime import datetime
 
 ARTEFACTS_DIR = 'artefacts'
-ARCHIVE_DIR = "archives"
+ARCHIVE_DIR = 'archives'
 
 
 def utc_now() -> datetime:

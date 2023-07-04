@@ -7,6 +7,7 @@ from futils import ensure_directories_present
 
 PASSWORD_FILE = "passwords.json"
 EMAIL_ADDRESSES_FILE = "email_addresses.json"
+APP_PASSWORD_KEY = "APP_PASSWORD"
 
 
 def write_content(text: str, source: str):
@@ -43,13 +44,6 @@ def write_exception_report(
         io_wrapper.write(report)
 
 
-def get_arbitrary_password(password_key: str) -> Union[str, None]:
-    return _fetch_key_from_json_file(
-        json_file=PASSWORD_FILE,
-        key=password_key
-        )
-
-
 def get_email_address(email_alias: str) -> str:
     email_addr = _fetch_key_from_json_file(
         json_file=EMAIL_ADDRESSES_FILE,
@@ -68,10 +62,12 @@ def _fetch_key_from_json_file(json_file: str, key: str) -> Union[str, None]:
 
 
 def get_app_password() -> str:
-    pass_key = "APP_PASSWORD"
-    password = get_arbitrary_password(password_key=pass_key)
+    password = _fetch_key_from_json_file(
+        json_file=PASSWORD_FILE,
+        key=APP_PASSWORD_KEY
+        )
     if password is None:
-        raise KeyError(f"The key '{pass_key}' is not valid for the password json file.")  # noqa: E501
+        raise KeyError(f"The key '{APP_PASSWORD_KEY}' is not valid for the password json file.")  # noqa: E501
     else:
         return password
 
