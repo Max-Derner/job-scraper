@@ -7,5 +7,4 @@ geckodriver.log
 experimental.py
 archives/
 artefacts/
-vulnerability_scanner.sh
 vulnerability_outputs/
