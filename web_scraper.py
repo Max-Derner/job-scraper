@@ -5,7 +5,7 @@ import re
 from typing import List, Tuple
 from common import Directories, MapStructure
 from snitch import Snitch
-from file_io import write_content, get_sites_dict
+from file_io import write_site_content, get_sites_dict
 from time import sleep
 from logger import logger
 
@@ -41,7 +41,7 @@ Returns (broken_sites, working_sites, sites_with_manchester_ref)
                 unedited_text=text,
                 lines_to_ignore=lines_to_ignore
                 )
-            write_content(text=text, source=name)
+            write_site_content(content=text, source=name)
             logger.info("Scraping website...")
             found_manchester = contains_manchester(text=text)
             working_sites.append(name)

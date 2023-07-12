@@ -1,5 +1,6 @@
 {
     "PASSWORD": "cleverPassword123",
     "APP_PASSWORD": "iAmARobotsPasswordBleepBlorp!",
+    "ROBOT_EMAIL": "mr.roboto@robot_place.org",
     "WARNING": "DO NOT CHANGE THIS FILE! TESTS RELY ON IT!"
 }
