@@ -1,4 +1,8 @@
-from futils import ensure_directories_present, archive_artefacts
+from futils import (
+    ensure_directories_present,
+    archive_artefacts,
+    create_directory_if_not_exist
+)
 from common import ARTEFACTS_DIR, ARCHIVE_DIR
 import os
 import shutil
@@ -50,4 +54,36 @@ def test_archive_artefacts(utc_now: Mock):
     assert os.path.exists(expected_file_path),\
         "file was not correctly archived"
     shutil.rmtree(path=expected_file_path)
+
+
+def tests_create_directory_if_not_exist_no_preexisting_file():
+    # given
+    directory = "test"
+    if os.path.exists(directory):
+        shutil.rmtree(directory)
+    assert not os.path.exists(directory), "test setup went wrong"
+    # when
+    create_directory_if_not_exist(directory=directory)
+    # then
+    correct_operation = os.path.exists(directory)
+    if correct_operation:
+        shutil.rmtree(directory)
+    assert correct_operation,\
+        "create_directory_if_not_exist did not successfully create directory"
+
+
+def tests_create_directory_if_not_exist_yes_preexisting_file():
+    # given
+    directory = "test"
+    if not os.path.exists(directory):
+        os.mkdir(directory)
+    assert os.path.exists(directory), "test setup went wrong"
+    # when
+    create_directory_if_not_exist(directory=directory)
+    # then
+    correct_operation = os.path.exists(directory)
+    if correct_operation:
+        shutil.rmtree(directory)
+    assert correct_operation,\
+        "create_directory_if_not_exist did not successfully create directory"
 

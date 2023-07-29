@@ -6,16 +6,17 @@ from file_io import (
     _fetch_key_from_json_file,
     get_app_password,
     get_email_address,
-    write_site_content
+    write_site_content,
+    get_sites_dict
 )
 
-# write_content
+#### write_site_content
 # write_exception_report
 #### get_email_address
 #### _fetch_key_from_json_file 
 #### get_app_password
-# _fetch_whole_json_object
-# get_sites_dict
+#### _fetch_whole_json_object
+#### get_sites_dict
 
 def test_fetch_key_from_json_file():
     # given
@@ -99,3 +100,16 @@ def test_write_site_content():
     except Exception as e:
         assert False, f"expected file was not created in the correct location.\nSee error: {e.__repr__}"
     assert actual_text == expected_text, "Written text does not match what was expected"
+
+# indirectly tests _fetch_whole_json_object
+@patch("file_io.WEBSITES_FILE", "i_am_a_test_file.json")
+def test_get_sites_dict():
+    # given
+    expected_json = {'APP_PASSWORD': 'iAmARobotsPasswordBleepBlorp!',
+                     'PASSWORD': 'cleverPassword123',
+                     'ROBOT_EMAIL': 'mr.roboto@robot_place.org',
+                     'WARNING': 'DO NOT CHANGE THIS FILE! TESTS RELY ON IT!'}
+    # when
+    actual_json = get_sites_dict()
+    # then
+    assert expected_json == actual_json
