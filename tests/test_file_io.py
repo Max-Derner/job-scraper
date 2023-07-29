@@ -1,4 +1,4 @@
-from unittest.mock import Mock, patch
+from unittest.mock import patch
 from common import Directories
 import pytest
 import os
@@ -9,14 +9,6 @@ from file_io import (
     write_site_content,
     get_sites_dict
 )
-
-#### write_site_content
-# write_exception_report
-#### get_email_address
-#### _fetch_key_from_json_file 
-#### get_app_password
-#### _fetch_whole_json_object
-#### get_sites_dict
 
 def test_fetch_key_from_json_file():
     # given

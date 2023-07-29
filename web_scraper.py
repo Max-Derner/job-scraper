@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 import re
 from typing import List, Tuple
 from common import Directories, MapStructure
-from snitch import Snitch
+from context_handlers import ExceptionSnitch
 from file_io import write_site_content, get_sites_dict
 from time import sleep
 from logger import logger
@@ -29,7 +29,7 @@ Returns (broken_sites, working_sites, sites_with_manchester_ref)
         page = map[MapStructure.PAGE]
         main_content = map[MapStructure.MAIN_CONTENT]
         lines_to_ignore = map[MapStructure.LINES_TO_IGNORE]
-        snitch = Snitch(dest_directory=dest_directory, web_page_alias=name)
+        snitch = ExceptionSnitch(dest_directory=dest_directory, web_page_alias=name)
 
         logger.info(f"\nAccessing website: {name}")
         text = ''
