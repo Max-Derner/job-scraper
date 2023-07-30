@@ -111,7 +111,7 @@ def compose_job_alert_email(
     return email
 
 
-def compose_help_email(broken_sites: List[str], dest_addr: str) -> _Email:
+def compose_help_email(broken_sites: set[str], dest_addr: str) -> _Email:
     logger.info("Composing help email.")
     message = ''
     message += 'Hello Max,\n'

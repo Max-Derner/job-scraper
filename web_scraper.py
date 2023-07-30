@@ -4,15 +4,15 @@ from selenium.webdriver.common.by import By
 import re
 from typing import List, Tuple
 from common import Directories, MapStructure
-from snitch import Snitch
-from file_io import write_content, get_sites_dict
+from context_handlers import ExceptionSnitch
+from file_io import write_site_content, get_sites_dict
 from time import sleep
 from logger import logger
 
 
 def scrape(
         headless_operation: bool = False
-        ) -> Tuple[List[str], List[str], List[str]]:
+        ) -> Tuple[set[str], List[str], List[str]]:
     """
 Returns (broken_sites, working_sites, sites_with_manchester_ref)
     """
@@ -29,7 +29,10 @@ Returns (broken_sites, working_sites, sites_with_manchester_ref)
         page = map[MapStructure.PAGE]
         main_content = map[MapStructure.MAIN_CONTENT]
         lines_to_ignore = map[MapStructure.LINES_TO_IGNORE]
-        snitch = Snitch(dest_directory=dest_directory, web_page_alias=name)
+        snitch = ExceptionSnitch(
+            dest_directory=dest_directory,
+            web_page_alias=name
+            )
 
         logger.info(f"\nAccessing website: {name}")
         text = ''
@@ -41,7 +44,7 @@ Returns (broken_sites, working_sites, sites_with_manchester_ref)
                 unedited_text=text,
                 lines_to_ignore=lines_to_ignore
                 )
-            write_content(text=text, source=name)
+            write_site_content(content=text, source=name)
             logger.info("Scraping website...")
             found_manchester = contains_manchester(text=text)
             working_sites.append(name)
@@ -68,12 +71,12 @@ def remove_ignored_lines(
     return edited_text
 
 
-def find_broken_sites(successfully_used_sites: List[str]) -> List[str]:
+def find_broken_sites(successfully_used_sites: List[str]) -> set[str]:
     SITES = get_sites_dict()
     all_sites = set(SITES.keys())
     working_sites = set(successfully_used_sites)
     broken_sites = all_sites.difference(working_sites)
-    return list(broken_sites)
+    return broken_sites
 
 
 def contains_manchester(text: str) -> bool:

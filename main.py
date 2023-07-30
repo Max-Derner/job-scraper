@@ -9,12 +9,12 @@ from emailer import (
 from logger import logger
 from web_scraper import scrape
 from common import EmailAddressKeys
-from snitch import Snitch
+from context_handlers import ExceptionSnitch
 from futils import archive_artefacts
 from file_io import get_email_address
 
 
-@Snitch.super_snitch_wrapper
+@ExceptionSnitch.super_snitch_wrapper
 def main():
     logger.info("Parsing CMD arguments")
     parser = argparse.ArgumentParser()

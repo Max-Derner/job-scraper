@@ -67,3 +67,10 @@ In order to perform the vulnerability scanning you simply need to be in the root
 `vulnerability_scanning/vulnerability_scanner.sh`  
 Should you have any issues, try running it in a bash sub-shell.  
 This will run Syft to produce an SBOM, then run Grype to scan the SBOM, and finally it will parse the output and formulate a tabular output for you.
+
+
+## **Testing**
+Test exist for the following modules:
+* futils (file-utils)
+* fileio (file input output)
+*

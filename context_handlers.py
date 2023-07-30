@@ -4,7 +4,7 @@ from emailer import send_emergency_email
 from logger import logger
 
 
-class Snitch:
+class ExceptionSnitch:
 
     dest_directory: str
     web_page_alias: str
@@ -13,7 +13,7 @@ class Snitch:
         self.dest_directory = dest_directory
         self.web_page_alias = web_page_alias
 
-    class WriteExceptionContextHandler:
+    class _WriteExceptionContextHandler:
 
         dest_directory: str
         web_page_alias: str
@@ -34,15 +34,15 @@ class Snitch:
                     exception_traceback=exc_tb,
                     exception_value=exc_val
                 )
-                return False
+                return True
 
     def context_manager(self):
-        return self.WriteExceptionContextHandler(
+        return self._WriteExceptionContextHandler(
             dest_directory=self.dest_directory,
             web_page_alias=self.web_page_alias
         )
 
-    class EmailExceptionContextHandler:
+    class _EmailExceptionContextHandler:
 
         def __enter__(self):
             logger.debug("Working safely to email exceptions.")
@@ -65,9 +65,11 @@ class Snitch:
 
             return False
 
+    # This is the last line of defense against exceptions
+    # It is used to wrap main
     @classmethod
     def super_snitch_wrapper(cls, func):
         def wrapper(*args, **kwargs):
-            with cls.EmailExceptionContextHandler():
+            with cls._EmailExceptionContextHandler():
                 func(*args, **kwargs)
         return wrapper

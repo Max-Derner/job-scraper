@@ -13,6 +13,7 @@ def ensure_directories_present(directories: List[str]):
     directories_to_ensure = []
     for directory in directories:
         from_root = False
+        # this juggling prevents an awkward split immediately afterwards
         if directory[0] == '/':
             from_root = True
             directory = directory[1:]
