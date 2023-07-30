@@ -6,7 +6,7 @@ from file_interactors.file_io import (
     get_sites_dict
 )
 from utilities.logger import logger
-from typing import List
+from typing import List, Set
 from utilities.common import (
     MapStructure,
     EmailAddressKeys,
@@ -111,7 +111,7 @@ def compose_job_alert_email(
     return email
 
 
-def compose_help_email(broken_sites: set[str], dest_addr: str) -> _Email:
+def compose_help_email(broken_sites: Set[str], dest_addr: str) -> _Email:
     logger.info("Composing help email.")
     message = ''
     message += 'Hello Max,\n'

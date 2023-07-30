@@ -2,7 +2,7 @@ from selenium.webdriver import Firefox
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
 import re
-from typing import List, Tuple
+from typing import List, Tuple, Set
 from utilities.common import Directories, MapStructure
 from utilities.context_handlers import ExceptionSnitch
 from file_interactors.file_io import write_site_content, get_sites_dict
@@ -12,7 +12,7 @@ from utilities.logger import logger
 
 def scrape(
         headless_operation: bool = False
-        ) -> Tuple[set[str], List[str], List[str]]:
+        ) -> Tuple[Set[str], List[str], List[str]]:
     """
 Returns (broken_sites, working_sites, sites_with_manchester_ref)
     """
@@ -71,7 +71,7 @@ def remove_ignored_lines(
     return edited_text
 
 
-def find_broken_sites(successfully_used_sites: List[str]) -> set[str]:
+def find_broken_sites(successfully_used_sites: List[str]) -> Set[str]:
     SITES = get_sites_dict()
     all_sites = set(SITES.keys())
     working_sites = set(successfully_used_sites)
