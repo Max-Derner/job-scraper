@@ -3,11 +3,11 @@ from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
 import re
 from typing import List, Tuple
-from common import Directories, MapStructure
-from context_handlers import ExceptionSnitch
-from file_io import write_site_content, get_sites_dict
+from utilities.common import Directories, MapStructure
+from utilities.context_handlers import ExceptionSnitch
+from file_interactors.file_io import write_site_content, get_sites_dict
 from time import sleep
-from logger import logger
+from utilities.logger import logger
 
 
 def scrape(

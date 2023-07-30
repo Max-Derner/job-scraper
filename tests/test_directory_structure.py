@@ -1,4 +1,4 @@
-from common import Directories
+from utilities.common import Directories
 
 
 def tests_directories():

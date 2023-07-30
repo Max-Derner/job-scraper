@@ -1,8 +1,8 @@
 from types import TracebackType
 from typing import Type, Dict, Union
 import json
-from common import Directories, format_exception
-from futils import ensure_directories_present
+from utilities.common import Directories, format_exception
+from file_interactors.futils import ensure_directories_present
 
 
 PASSWORD_FILE = "json_files/passwords.json"

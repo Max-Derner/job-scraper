@@ -1,8 +1,8 @@
 import logging
 import os
 from typing import List, Union
-from common import ARTEFACTS_DIR
-from futils import ensure_directories_present
+from utilities.common import ARTEFACTS_DIR
+from file_interactors.futils import ensure_directories_present
 
 
 logger = logging.getLogger('logger')

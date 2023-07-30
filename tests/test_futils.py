@@ -1,9 +1,9 @@
-from futils import (
+from file_interactors.futils import (
     ensure_directories_present,
     archive_artefacts,
     create_directory_if_not_exist
 )
-from common import ARTEFACTS_DIR, ARCHIVE_DIR
+from utilities.common import ARTEFACTS_DIR, ARCHIVE_DIR
 import os
 import shutil
 from unittest.mock import patch, Mock
@@ -28,7 +28,7 @@ def test_ensure_directories_present():
     shutil.rmtree(path="directory1")
 
 
-@patch("futils.utc_now")
+@patch("file_interactors.futils.utc_now")
 def test_archive_artefacts(utc_now: Mock):
     # given
     pretend_time = datetime(year=1970,

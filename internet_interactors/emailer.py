@@ -1,19 +1,19 @@
 import smtplib
 import ssl
-from file_io import (
+from file_interactors.file_io import (
     get_app_password,
     get_email_address,
     get_sites_dict
 )
-from logger import logger
+from utilities.logger import logger
 from typing import List
-from common import (
+from utilities.common import (
     MapStructure,
     EmailAddressKeys,
 )
+from datetime import date
 
 _ROBOT_SIGN_OFF = '\n\nBest wishes,\n   Ro-butt the job hunting robot'
-
 
 class _Email:
     address: str
@@ -25,7 +25,7 @@ class _Email:
                  message_content: str):
         self.address = dest_addr
         email = ''
-        email += 'Subject: ' + subject_line + '\n\n'
+        email += f'Subject: {date.today()}:- ' + subject_line + '\n\n'
         email += message_content
         self.message = email
 
@@ -130,7 +130,7 @@ def compose_help_email(broken_sites: set[str], dest_addr: str) -> _Email:
 
     email = _Email(
         dest_addr=dest_addr,
-        subject_line='HELP! I have shattered into a thousand pieces!',
+        subject_line='HELP! Broken sites!',
         message_content=message
     )
     return email
@@ -185,7 +185,7 @@ def _compose_emergency_email(formatted_exception: str) -> _Email:
     admin_addr = get_email_address(email_alias=EmailAddressKeys.ADMIN)
     email = _Email(
         dest_addr=admin_addr,
-        subject_line="Alas! I have shat myself to death!",
+        subject_line="Runtime error! I have shat myself to death!",
         message_content=message
     )
     return email

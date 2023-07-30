@@ -10,3 +10,5 @@ artefacts/
 vulnerability_outputs/
 json_files/email_addresses.json
 json_files/passwords.json
+.coverage
+reports
