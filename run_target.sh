@@ -1,8 +1,5 @@
 #! bin/bash
 
-echo "Pulling most recent changes from repo"
-git pull
-
 echo "Activating venv"
 source jobsworth/bin/activate
 

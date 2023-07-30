@@ -33,7 +33,7 @@ def tests_contains_manchester(manchester_present: bool, text: str):
               {'' if manchester_present else 'not'} present"
 
 # given
-@patch("file_io.WEBSITES_FILE", "i_am_a_test_file.json")
+@patch("file_io.WEBSITES_FILE", "json_files/i_am_a_test_file.json")
 def tests_find_broken_sites():
     successfully_used_sites = ["PASSWORD",
                                "APP_PASSWORD",
