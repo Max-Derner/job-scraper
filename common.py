@@ -2,14 +2,14 @@ from traceback import TracebackException
 from types import TracebackType
 from typing import Type
 from enum import Enum
-from datetime import datetime
+from datetime import datetime, timezone
 
 ARTEFACTS_DIR = 'artefacts'
 ARCHIVE_DIR = 'archives'
 
 
 def utc_now() -> datetime:
-    return datetime.utcnow()
+    return datetime.now(timezone.utc)
 
 
 def format_exception(exception_type: Type[BaseException],

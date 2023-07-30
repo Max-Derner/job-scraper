@@ -65,7 +65,8 @@ class ExceptionSnitch:
 
             return False
 
-    # This is the last line of defense against exceptions and is used to wrap main
+    # This is the last line of defense against exceptions
+    # It is used to wrap main
     @classmethod
     def super_snitch_wrapper(cls, func):
         def wrapper(*args, **kwargs):
