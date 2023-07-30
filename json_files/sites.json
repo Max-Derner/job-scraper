@@ -28,10 +28,5 @@
         "page": "https://careers.thebodyshop.com/search/?createNewAlert=false&q=&locationsearch=manchester&optionsFacetsDD_customfield1=&optionsFacetsDD_customfield2=&optionsFacetsDD_customfield3=&optionsFacetsDD_state=&optionsFacetsDD_country=",
         "main-content": "//*[@id=\"searchresults\"]",
         "lines-to-ignore": [1]
-    },
-    "l'occitaine": {
-        "page": "https://loccitane.pinpointhq.com/?structure_custom_group_one_id=%5B1213%5D&location_id=%5B7705%5D",
-        "main-content": "/html/body/div[3]/main",
-        "lines-to-ignore": []
     }
 }

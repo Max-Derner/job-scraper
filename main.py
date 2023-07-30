@@ -1,17 +1,17 @@
 import argparse
-from emailer import (
+from internet_interactors.emailer import (
     EmailCollection,
     send_emails,
     compose_help_email,
     compose_job_alert_email,
     compose_operation_report_email
 )
-from logger import logger
-from web_scraper import scrape
-from common import EmailAddressKeys
-from context_handlers import ExceptionSnitch
-from futils import archive_artefacts
-from file_io import get_email_address
+from utilities.logger import logger
+from internet_interactors.web_scraper import scrape
+from utilities.common import EmailAddressKeys
+from utilities.context_handlers import ExceptionSnitch
+from file_interactors.futils import archive_artefacts
+from file_interactors.file_io import get_email_address
 
 
 @ExceptionSnitch.super_snitch_wrapper

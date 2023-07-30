@@ -1,13 +1,13 @@
 from types import TracebackType
 from typing import Type, Dict, Union
 import json
-from common import Directories, format_exception
-from futils import ensure_directories_present
+from utilities.common import Directories, format_exception
+from file_interactors.futils import ensure_directories_present
 
 
-PASSWORD_FILE = "passwords.json"
-EMAIL_ADDRESSES_FILE = "email_addresses.json"
-WEBSITES_FILE = "sites.json"
+PASSWORD_FILE = "json_files/passwords.json"
+EMAIL_ADDRESSES_FILE = "json_files/email_addresses.json"
+WEBSITES_FILE = "json_files/sites.json"
 APP_PASSWORD_KEY = "APP_PASSWORD"
 
 

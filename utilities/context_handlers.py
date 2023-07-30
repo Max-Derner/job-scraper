@@ -1,7 +1,7 @@
-from common import format_exception
-from file_io import write_exception_report
-from emailer import send_emergency_email
-from logger import logger
+from utilities.common import format_exception
+from file_interactors.file_io import write_exception_report
+from internet_interactors.emailer import send_emergency_email
+from utilities.logger import logger
 
 
 class ExceptionSnitch:

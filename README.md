@@ -26,7 +26,10 @@ execute the following commands:
 Now when you want to run the project, activate the venv first:  
 `source jobsworth/bin/activate`  
 then run  
-`python3 main.py`
+`python3 main.py`  
+
+To leave the venv, simply enter the command:  
+`deactivate`  
 
 The security scanning requires a different set of tools not typically distributed in linux distros by default.
 You will need both Syft and Grype, produced by Anchore:  
@@ -39,12 +42,12 @@ For some of the formatting which my bash scripts run, you will also need to inst
 
 ### **Caveats**
 Running this in Windows will break because it doesn't follow the Filesystem Hierarchy Standard of using '/' in it's directory structure.  
-I have only used this on Ubuntu 20.04.6 LTS, your mileage may vary.  
+I have only used this on Ubuntu 20.04.6 LTS, so your mileage may vary.  
 
 ### **Required files**
 You must create two json files which are excluded from this repository for privacy purposes.  
-* `email_addresses.json`  
-* `passwords.json`  
+* `json_files/email_addresses.json`  
+* `json_files/passwords.json`  
 
 passwords.json is structured as such:  
 ```
@@ -73,4 +76,9 @@ This will run Syft to produce an SBOM, then run Grype to scan the SBOM, and fina
 Test exist for the following modules:
 * futils (file-utils)
 * fileio (file input output)
-*
+* context_handlers
+* web_scraper
+
+
+## **Automation**
+Should you wish to automate the webscraper, you can target the file `run_target.sh` with a cron job.

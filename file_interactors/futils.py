@@ -1,7 +1,7 @@
 import shutil
 import os
 from typing import List
-from common import utc_now, ARCHIVE_DIR, ARTEFACTS_DIR
+from utilities.common import utc_now, ARCHIVE_DIR, ARTEFACTS_DIR
 
 
 def create_directory_if_not_exist(directory: str):

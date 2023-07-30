@@ -1,8 +1,8 @@
 from unittest.mock import patch
-from common import Directories
+from utilities.common import Directories
 import pytest
 import os
-from file_io import (
+from file_interactors.file_io import (
     _fetch_key_from_json_file,
     get_app_password,
     get_email_address,
@@ -10,17 +10,19 @@ from file_io import (
     get_sites_dict
 )
 
+MODULE = "file_interactors.file_io"
+
 def test_fetch_key_from_json_file():
     # given
     expected_password = "cleverPassword123"
-    returned_password = _fetch_key_from_json_file(json_file="i_am_a_test_file.json",
+    returned_password = _fetch_key_from_json_file(json_file="json_files/i_am_a_test_file.json",
                                                   key="PASSWORD")
     assert expected_password == returned_password,\
         "incorrect password returned"
 
 
 # indirectly tests get_arbitrary_password
-@patch("file_io.PASSWORD_FILE", "i_am_a_test_file.json")
+@patch(f"{MODULE}.PASSWORD_FILE", "json_files/i_am_a_test_file.json")
 def test_get_app_password_happy_path():
     # given
     expected_password = "iAmARobotsPasswordBleepBlorp!"
@@ -33,8 +35,8 @@ def test_get_app_password_happy_path():
 
 # indirectly tests get_arbitrary_password
 # given
-@patch("file_io.PASSWORD_FILE", "i_am_a_test_file.json")
-@patch("file_io.APP_PASSWORD_KEY", "something that doesn't exist")
+@patch(f"{MODULE}.PASSWORD_FILE", "json_files/i_am_a_test_file.json")
+@patch(f"{MODULE}.APP_PASSWORD_KEY", "something that doesn't exist")
 def test_get_app_password_sad_path():
     with pytest.raises(KeyError):  # then
         # when
@@ -42,7 +44,7 @@ def test_get_app_password_sad_path():
 
 
 # given
-@patch("file_io.PASSWORD_FILE", "non_existent_json_file_djshsiudhfnkdaj.json")
+@patch(f"{MODULE}.PASSWORD_FILE", "non_existent_json_file_djshsiudhfnkdaj.json")
 def test_get_app_password_extra_sad_path():
     with pytest.raises(FileNotFoundError):  # then
         # when
@@ -50,7 +52,7 @@ def test_get_app_password_extra_sad_path():
 
 
 # given
-@patch("file_io.EMAIL_ADDRESSES_FILE", "i_am_a_test_file.json")
+@patch(f"{MODULE}.EMAIL_ADDRESSES_FILE", "json_files/i_am_a_test_file.json")
 def test_get_email_address_happy_path():
     expected_email = "mr.roboto@robot_place.org"
     # when
@@ -60,7 +62,7 @@ def test_get_email_address_happy_path():
 
 
 # given
-@patch("file_io.EMAIL_ADDRESSES_FILE", "i_am_a_test_file.json")
+@patch(f"{MODULE}.EMAIL_ADDRESSES_FILE", "json_files/i_am_a_test_file.json")
 def test_get_email_address_sad_path():
     with pytest.raises(KeyError):  # then
         # when
@@ -68,7 +70,7 @@ def test_get_email_address_sad_path():
 
 
 # given
-@patch("file_io.EMAIL_ADDRESSES_FILE", "non_existent_json_file_djshsiudhfnkdaj.json")
+@patch(f"{MODULE}.EMAIL_ADDRESSES_FILE", "non_existent_json_file_djshsiudhfnkdaj.json")
 def test_get_email_address_extra_sad_path():
     with pytest.raises(FileNotFoundError):  # then
         # when
@@ -94,7 +96,7 @@ def test_write_site_content():
     assert actual_text == expected_text, "Written text does not match what was expected"
 
 # indirectly tests _fetch_whole_json_object
-@patch("file_io.WEBSITES_FILE", "i_am_a_test_file.json")
+@patch(f"{MODULE}.WEBSITES_FILE", "json_files/i_am_a_test_file.json")
 def test_get_sites_dict():
     # given
     expected_json = {'APP_PASSWORD': 'iAmARobotsPasswordBleepBlorp!',
