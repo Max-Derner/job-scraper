@@ -67,9 +67,10 @@ email_addresses.json is structured as such:
 
 ### **Security Scanning**
 In order to perform the vulnerability scanning you simply need to be in the root directory, then you run the following command:  
-`vulnerability_scanning/vulnerability_scanner.sh`  
+`./vulnerability_scanning/vulnerability_scanner.sh`  
 Should you have any issues, try running it in a bash sub-shell.  
 This will run Syft to produce an SBOM, then run Grype to scan the SBOM, and finally it will parse the output and formulate a tabular output for you.
+There is indeed a table output option for Grype but I wanted to recreate it in Bash just to show off.
 
 
 ## **Testing**
